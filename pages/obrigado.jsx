@@ -1,5 +1,4 @@
-import { Layout, LoginContainer, Flex } from "../components/Containers"
-import { SingleContainer } from "../components/Indicators/styles"
+import { Layout, LoginContainer } from "../components/Containers"
 import { H2, Parag } from "../components/Text"
 import Image from "next/image"
 import Link from "next/link"
