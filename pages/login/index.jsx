@@ -6,11 +6,17 @@ import TextField from "../../components/TextField"
 import Link from "next/link"
 
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import { useEffect } from "react"
+import axios from "axios"
+import { useRouter } from "next/router"
 
 const Login = () => {
 
     const [ddd, setDdd] = useState("")
     const [celular, setCelular] = useState("")
+    const completeNum = "55" + ddd + celular
+
+    const router = useRouter()
 
     const onChange = (value, target) => {
         const reg = /^[0-9\b]+$/;
@@ -23,6 +29,18 @@ const Login = () => {
                setCelular(value)
            } 
         }
+    }
+
+    const handleSendSms = () => {
+
+        const requestData = {
+            telefone: completeNum
+        }
+
+        axios.post("http://localhost:3000/account/getSms", requestData)
+            .then(res => {
+                console.log(res)
+            })
     }
 
     return (
@@ -54,7 +72,12 @@ const Login = () => {
                         />
                     </LoginFormContainer>
                     <Link href="/login/confirmacao">
-                        <CustomButton donate>Receber código por SMS</CustomButton>
+                        <CustomButton
+                            donate
+                            onClick={() => handleSendSms()}
+                        >
+                            Receber código por SMS
+                        </CustomButton>
                     </Link>
                     <Link href="/login/confirmacao">
                         <CustomButton fullWidth><WhatsAppIcon style={{ marginRight: "8px"}} /> Receber código por Whatsapp</CustomButton>

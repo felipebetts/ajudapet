@@ -1,3 +1,4 @@
+import axios from "axios"
 import Link from "next/link"
 import { useState } from "react"
 import CustomButton from "../../components/Button"
@@ -5,11 +6,15 @@ import { Flex, Layout, LoginContainer } from "../../components/Containers"
 import { H2, Parag } from "../../components/Text"
 import TextField from "../../components/TextField"
 
+import { useRouter } from "next/router"
+
 
 const LoginConfirmation = () => {
 
     const [secret, setSecret] = useState("")
-    const [celular, setCelular] = useState("31999345529")
+    const [celular, setCelular] = useState("5521983918175")
+
+    const router = useRouter()
 
     const onChange = (e) => {
         const reg = /^[0-9\b]+$/;
@@ -19,6 +24,18 @@ const LoginConfirmation = () => {
         }
     }
 
+    const handleSmsCheck = () => {
+
+        const requestData = {
+            telefone: celular,
+            code: secret
+        }
+
+        axios.post("http://localhost:3000/account/checkSms", requestData)   
+            .then(res => {
+                console.log(res)
+            })
+    } 
 
     return (
         <Layout>
@@ -44,7 +61,12 @@ const LoginConfirmation = () => {
                 </Flex>
                 <Flex>
                     <Link href="/obrigado">
-                        <CustomButton contained>Confirmar</CustomButton>
+                        <CustomButton
+                            contained
+                            onClick={() => handleSmsCheck()}
+                        >
+                            Confirmar
+                        </CustomButton>
                     </Link>
                 </Flex>
             </LoginContainer>
