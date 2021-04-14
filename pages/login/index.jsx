@@ -79,9 +79,9 @@ const Login = () => {
                         <CustomButton
                             donate
                             onClick={() => handleSendSms()}
+                            isLoading={loading}
                         >
-                            { loading ? <CircularProgress color="inherit" size={21}/> : "Receber código por SMS" }
-                            
+                            Receber código por SMS   
                         </CustomButton>
                     {/* </Link> */}
                     
