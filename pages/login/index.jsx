@@ -6,14 +6,17 @@ import TextField from "../../components/TextField"
 import Link from "next/link"
 
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import { CircularProgress } from '@material-ui/core';
 import { useEffect } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
+import { getSms, login } from "../../utils/auth-client"
 
 const Login = () => {
 
     const [ddd, setDdd] = useState("")
     const [celular, setCelular] = useState("")
+    const [loading, setLoading] = useState(false)
     const completeNum = "55" + ddd + celular
 
     const router = useRouter()
@@ -31,16 +34,13 @@ const Login = () => {
         }
     }
 
-    const handleSendSms = () => {
-
-        const requestData = {
-            telefone: completeNum
+    const handleSendSms = async () => {
+        setLoading(true)
+        const sent = await getSms(completeNum)
+        if (sent) {
+            setLoading(false)
         }
-
-        axios.post("http://localhost:3000/account/getSms", requestData)
-            .then(res => {
-                console.log(res)
-            })
+        return router.push("/login/confirmacao")
     }
 
     return (
@@ -71,17 +71,24 @@ const Login = () => {
                             value={celular}
                         />
                     </LoginFormContainer>
-                    <Link href="/login/confirmacao">
+                    {/* <Link href="/login/confirmacao"> */}
                         <CustomButton
                             donate
                             onClick={() => handleSendSms()}
                         >
-                            Receber código por SMS
+                            { loading ? <CircularProgress color="inherit" size={21}/> : "Receber código por SMS" }
+                            
                         </CustomButton>
-                    </Link>
-                    <Link href="/login/confirmacao">
-                        <CustomButton fullWidth><WhatsAppIcon style={{ marginRight: "8px"}} /> Receber código por Whatsapp</CustomButton>
-                    </Link>
+                    {/* </Link> */}
+                    
+                    {/* <Link href="/login/confirmacao"> */}
+                        <CustomButton
+                            fullWidth
+                            onClick={() => getSms(completeNum)}
+                        >
+                            <WhatsAppIcon style={{ marginRight: "8px"}} /> Receber código por Whatsapp
+                        </CustomButton>
+                    {/* </Link> */}
                 </Flex>
             </LoginContainer>
         </Layout>

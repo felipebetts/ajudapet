@@ -7,6 +7,7 @@ import { H2, Parag } from "../../components/Text"
 import TextField from "../../components/TextField"
 
 import { useRouter } from "next/router"
+import { checkSms } from "../../utils/auth-client"
 
 
 const LoginConfirmation = () => {
@@ -63,7 +64,7 @@ const LoginConfirmation = () => {
                     <Link href="/obrigado">
                         <CustomButton
                             contained
-                            onClick={() => handleSmsCheck()}
+                            onClick={() => checkSms(secret, celular)}
                         >
                             Confirmar
                         </CustomButton>
