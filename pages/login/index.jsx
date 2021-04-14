@@ -10,7 +10,7 @@ import { CircularProgress } from '@material-ui/core';
 import { useEffect } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
-import { getSms, login } from "../../utils/auth-client"
+import { getSms, login } from "../../services/auth-client"
 
 const Login = () => {
 

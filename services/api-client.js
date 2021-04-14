@@ -1,4 +1,4 @@
-import { localStorageKey, _baseUrl } from "./constants";
+import { localStorageKey, _baseUrl } from "../utils/constants";
 
 function client(endpoint, { body, ...customConfig } = {}) {
   const token = window.localStorage.getItem(localStorageKey);

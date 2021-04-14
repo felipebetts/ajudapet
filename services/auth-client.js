@@ -1,6 +1,6 @@
 import axios from "axios";
 import client from "./api-client";
-import { _baseUrl, localStorageKey } from "./constants";
+import { _baseUrl, localStorageKey } from "../utils/constants";
 
 
 function handleUserResponse({ data = null, errors = null, ...rest }) {
