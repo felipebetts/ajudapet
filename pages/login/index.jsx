@@ -37,10 +37,14 @@ const Login = () => {
     const handleSendSms = async () => {
         setLoading(true)
         const sent = await getSms(completeNum)
+        console.log(sent)
         if (sent) {
             setLoading(false)
         }
-        return router.push("/login/confirmacao")
+        router.push({
+            pathname: "/login/confirmacao",
+            query: { cel: `${completeNum}`}
+        })
     }
 
     return (

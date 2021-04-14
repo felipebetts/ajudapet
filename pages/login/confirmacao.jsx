@@ -13,9 +13,11 @@ import { checkSms } from "../../utils/auth-client"
 const LoginConfirmation = () => {
 
     const [secret, setSecret] = useState("")
-    const [celular, setCelular] = useState("5521983918175")
 
-    const router = useRouter()
+    const { query } = useRouter()
+
+    const cel = query.cel
+    console.log(cel)
 
     const onChange = (e) => {
         const reg = /^[0-9\b]+$/;
@@ -42,7 +44,7 @@ const LoginConfirmation = () => {
         <Layout>
             <LoginContainer>
                 <H2>Digite o código de acesso</H2>
-                <Parag>Insira o código de 6 dígitos que enviamos para o número <strong>{ celular }</strong>.</Parag>
+                <Parag>Insira o código de 6 dígitos que enviamos para o número <strong>{ cel }</strong>.</Parag>
                 <TextField
                     onChange={e => onChange(e)}
                     value={secret}
@@ -51,7 +53,7 @@ const LoginConfirmation = () => {
                 <Flex column margin="0">
                     <Link href="/">
                         <a>
-                            Enviar código novamente para { celular }
+                            Enviar código novamente para { cel }
                         </a>
                     </Link>
                     <Link href="/login">
@@ -64,7 +66,7 @@ const LoginConfirmation = () => {
                     <Link href="/obrigado">
                         <CustomButton
                             contained
-                            onClick={() => checkSms(secret, celular)}
+                            onClick={() => cel ? checkSms(secret, cel) : false}
                         >
                             Confirmar
                         </CustomButton>
