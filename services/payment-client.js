@@ -6,7 +6,7 @@ async function paymentMethods() {
         method: "get",
         url: "https://api.mercadopago.com/payment_methods",
         headers: {
-            'Authorization': "Bearer TEST-4763540346196517-041513-6d4bf9c6b8e2fc03defe650baf711cba-743727221",
+            'Authorization': `Bearer ${process.env.ACCESS_TOKEN_ENV}`,
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         }
