@@ -43,14 +43,26 @@ const CustomTextField = withStyles({
   },
 })(MuiTextField)
 
-const TextField = ({ value, onChange, type, label, variant, donation, fieldWidth, fullWidth }) => {
+const TextField = ({
+  value,
+  onChange,
+  type,
+  label,
+  variant,
+  donation,
+  fieldWidth,
+  fullWidth,
+  id = "custom-text-field",
+  name
+}) => {
 
   if (!donation) {
     return (
       <Flex margin="20px 10px">
         <CustomTextField
           value={value}
-          id="custom-text-field"
+          id={id}
+          name={name}
           onChange={e => onChange(e)}
           type={type}
           label={label}
@@ -68,7 +80,7 @@ const TextField = ({ value, onChange, type, label, variant, donation, fieldWidth
       <label style={{ fontSize: "1.3rem"}}>R$</label>
         <CustomTextField
           value={value}
-          id="custom-text-field"
+          id={id}
           onChange={e => onChange(e)}
           type={type}
           label={label}
@@ -76,7 +88,7 @@ const TextField = ({ value, onChange, type, label, variant, donation, fieldWidth
           style={{ width: fieldWidth }}
         />
       </DonationForm>
-        <label htmlFor="custom-text-field" style={{ cursor: "pointer" }}>Editar</label>
+        <label htmlFor={id} style={{ cursor: "pointer" }}>Editar</label>
     </Flex>
   )
 }

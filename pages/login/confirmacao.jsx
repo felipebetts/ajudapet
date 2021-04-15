@@ -27,19 +27,6 @@ const LoginConfirmation = () => {
         }
     }
 
-    const handleSmsCheck = () => {
-
-        const requestData = {
-            telefone: celular,
-            code: secret
-        }
-
-        axios.post("http://localhost:3000/account/checkSms", requestData)   
-            .then(res => {
-                console.log(res)
-            })
-    } 
-
     return (
         <Layout>
             <LoginContainer>

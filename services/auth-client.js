@@ -1,5 +1,4 @@
-import axios from "axios";
-import client from "./api-client";
+import { client } from "./api-client";
 import { _baseUrl, localStorageKey } from "../utils/constants";
 
 
