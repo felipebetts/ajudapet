@@ -4,6 +4,9 @@ const processPayment = (req, res) => {
     // var mercadopago = require('mercadopago');
     mercadopago.configurations.setAccessToken("TEST-4763540346196517-041513-6d4bf9c6b8e2fc03defe650baf711cba-743727221");
 
+    console.log("req.body:", req.body)
+    console.log("req.method:", req.method)
+
     var payment_data = {
         transaction_amount: Number(req.body.transactionAmount),
         token: req.body.token,
