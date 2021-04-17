@@ -1,5 +1,5 @@
 const setPaymentForm = async () => {
-    await window.Mercadopago.setPublishableKey("TEST-adb95af8-06af-4982-ad62-7bddc9bacf63");
+    await window.Mercadopago.setPublishableKey("APP_USR-498cd25a-a0f7-4123-bf23-9b2dc175fd1e");
 
     await window.Mercadopago.getIdentificationTypes();
 

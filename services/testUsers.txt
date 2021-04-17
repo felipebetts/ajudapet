@@ -1,0 +1,7 @@
+{
+  id: 745457266,
+  nickname: 'TETE7772701',
+  password: 'qatest2020',
+  site_status: 'active',
+  email: 'test_user_6025018@testuser.com'
+}
