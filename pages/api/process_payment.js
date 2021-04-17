@@ -25,7 +25,7 @@ const processPayment = (req, res) => {
 
   console.log("payment_data", payment_data)
 
-  mercadopago.payment.save(payment_data)
+  return mercadopago.payment.save(payment_data)
     .then(function (response) {
       res.status(response.status).json({
         status: response.body.status,
