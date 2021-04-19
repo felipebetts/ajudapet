@@ -105,7 +105,7 @@ const PaymentForm = () => {
                     <select type="text" id="installments" name="installments"></select>
                 </div>
                 <div>
-                    <input type="hidden" name="transactionAmount" id="transactionAmount" defaultValue="0.05" />
+                    <input type="hidden" name="transactionAmount" id="transactionAmount" defaultValue="1" />
                     <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
                     <input type="hidden" name="description" id="description" />
                     <br />
