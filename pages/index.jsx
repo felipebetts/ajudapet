@@ -44,7 +44,7 @@ const Main = () => {
         </Flex>
         {/* <p>Selecione um valor para doar.</p> */}
         <Flex margin="30px 0px 0px 0px">
-          <Link href="/login">
+          <Link href={`/login?valor=${currentValue}`}>
             <Button donate>Doar</Button>
           </Link>
         </Flex>

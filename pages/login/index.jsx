@@ -16,6 +16,7 @@ const Login = () => {
     const completeNum = "55" + ddd + celular
 
     const router = useRouter()
+    const { query } = useRouter()
 
     const onChange = (value, target) => {
         const reg = /^[0-9\b]+$/;
@@ -39,7 +40,7 @@ const Login = () => {
         }
         router.push({
             pathname: "/login/confirmacao",
-            query: { cel: `${completeNum}`}
+            query: { cel: `${completeNum}`, valor: `${query.valor}` }
         })
     }
 

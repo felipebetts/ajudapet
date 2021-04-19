@@ -5,6 +5,8 @@ import { createPayment, setPaymentForm } from "../services/payment-client"
 // import TextField from "../components/TextField"
 
 import dynamic from "next/dynamic"
+import { useRouter } from "next/router"
+import { CircularProgress } from "@material-ui/core"
 
 
 const Payment = () => {
@@ -16,14 +18,28 @@ const Payment = () => {
         { ssr: false }
     )
 
-    return (
-        <Layout>
-            <LoginContainer>
-                <H2>Pagamento</H2>
-                <PaymentForm />
-            </LoginContainer>
-        </Layout>
-    )
+    const { query } = useRouter()
+    const valor = query.valor
+
+    if (valor !== undefined) {
+        return (
+            <Layout>
+                <LoginContainer>
+                    <H2>Pagamento</H2>
+                    <PaymentForm value={valor} />
+                </LoginContainer>
+            </Layout>
+        )
+    } else {
+        return (
+            <Layout>
+                <LoginContainer>
+                    <H2>Pagamento</H2>
+                    <CircularProgress color="inherit" />
+                </LoginContainer>
+            </Layout>
+        )
+    }
 }
 
 export default Payment

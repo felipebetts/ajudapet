@@ -2,11 +2,16 @@ import { useEffect, useState } from "react"
 import { setPaymentForm, getIssuers, getCardToken } from "../services/payment-client"
 
 
-const PaymentForm = () => {
+const PaymentForm = ({ value }) => {
     
     // const [formMounted, setFormMounted] = useState(false)
     const [cardNumber, setCardNumber] = useState("")
     const [cardFlag, setCardFlag] = useState({ show: false, src: "" })
+
+    
+    useEffect(() => {
+        console.log("valor da doação: ", value)
+    }, [value])
     
     setPaymentForm()
 
@@ -96,7 +101,7 @@ const PaymentForm = () => {
                         oncopy="return false" oncut="return false"
                         ondrag="return false" ondrop="return false" autocomplete="off" />
                 </div>
-                <div id="issuerInput">
+                <div id="issuerInput" style={{ display: "none"}}>
                     <label for="issuer">Banco emissor</label>
                     <select id="issuer" name="issuer" data-checkout="issuer"></select>
                 </div>
@@ -105,7 +110,7 @@ const PaymentForm = () => {
                     <select type="text" id="installments" name="installments"></select>
                 </div>
                 <div>
-                    <input type="hidden" name="transactionAmount" id="transactionAmount" defaultValue="1" />
+                    <input type="hidden" name="transactionAmount" id="transactionAmount" value={value} />
                     <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
                     <input type="hidden" name="description" id="description" />
                     <br />
