@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import MuiButton from '@material-ui/core/Button';
 import { CircularProgress } from '@material-ui/core';
 
 const ColorButton = withStyles(() => ({
@@ -32,7 +32,7 @@ const ColorButton = withStyles(() => ({
     fullWidth: {
         width: "100%"
     },
-  }))(Button);
+  }))(MuiButton);
 
 const CustomButton = ({ children, onClick, current , donate, contained, fullWidth, isLoading }) => {
 
