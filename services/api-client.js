@@ -1,11 +1,13 @@
 import { localStorageKey, _baseUrl } from "../utils/constants";
 
-function client(endpoint, { body, ...customConfig } = {}) {
+export function client(endpoint, { body, ...customConfig } = {}) {
   const token = window.localStorage.getItem(localStorageKey);
   const headers = { 'content-type': 'application/json' };
+  console.log(customConfig)
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
+  console.log(headers)
   const config = {
     method: body ? 'POST' : 'GET',
     ...customConfig,
@@ -14,6 +16,7 @@ function client(endpoint, { body, ...customConfig } = {}) {
       ...customConfig.headers,
     },
   };
+  console.log(config.headers)
   if (body) {
     config.body = JSON.stringify(body);
   }
@@ -23,4 +26,3 @@ function client(endpoint, { body, ...customConfig } = {}) {
     .then(r => r.json());
 }
 
-export default client;

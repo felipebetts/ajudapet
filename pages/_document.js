@@ -10,11 +10,14 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />
           <NextScript />
+          <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+          {/* <script src="/js/MercadoPago.js"></script> */}
+          {/* <script src="/js/integration.js"></script> */}
         </body>
       </Html>
     )

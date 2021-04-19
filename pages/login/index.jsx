@@ -3,12 +3,8 @@ import CustomButton from "../../components/Button"
 import { Flex, Layout, LoginContainer, LoginFormContainer } from "../../components/Containers"
 import { H2, Parag } from "../../components/Text"
 import TextField from "../../components/TextField"
-import Link from "next/link"
 
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import { CircularProgress } from '@material-ui/core';
-import { useEffect } from "react"
-import axios from "axios"
 import { useRouter } from "next/router"
 import { getSms, login } from "../../services/auth-client"
 
