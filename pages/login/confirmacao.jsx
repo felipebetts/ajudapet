@@ -19,24 +19,24 @@ const LoginConfirmation = () => {
 
     const cel = query.cel
     console.log(cel)
-    
+
     const onChange = (e) => {
         const reg = /^[0-9\b]+$/;
-        
+
         if (e.target.value === '' || reg.test(e.target.value)) {
             setSecret(e.target.value)
         }
     }
-    
+
 
     const handleCheckSms = () => {
         checkSms(secret, cel)
-        .then(async res => {
-            console.log("res:", res)
-            const user = await getCurrentUser(res.data.token)
-            const valor = query.valor
-            if(user && valor) {
-                console.log("user defined: ", user)
+            .then(async res => {
+                console.log("res:", res)
+                const user = await getCurrentUser(res.data.token)
+                const valor = query.valor
+                if (user && valor) {
+                    console.log("user defined: ", user)
                     router.push({
                         pathname: "/pagamento",
                         query: { valor: valor }
@@ -49,7 +49,7 @@ const LoginConfirmation = () => {
         <Layout>
             <LoginContainer>
                 <H2>Digite o código de acesso</H2>
-                <Parag>Insira o código de 6 dígitos que enviamos para o número <strong>{ cel }</strong>.</Parag>
+                <Parag>Insira o código de 6 dígitos que enviamos para o número <strong>{cel}</strong>.</Parag>
                 <TextField
                     onChange={e => onChange(e)}
                     value={secret}
@@ -58,7 +58,7 @@ const LoginConfirmation = () => {
                 <Flex column margin="0">
                     <Link href="/">
                         <a>
-                            Enviar código novamente para { cel }
+                            Enviar código novamente para {cel}
                         </a>
                     </Link>
                     <Link href="/login">
@@ -68,14 +68,12 @@ const LoginConfirmation = () => {
                     </Link>
                 </Flex>
                 <Flex>
-                    {/* <Link href="/obrigado"> */}
-                        <CustomButton
-                            contained
-                            onClick={() => cel ? handleCheckSms() : false}
-                        >
-                            Confirmar
-                        </CustomButton>
-                    {/* </Link> */}
+                    <CustomButton
+                        contained
+                        onClick={() => cel ? handleCheckSms() : false}
+                    >
+                        Confirmar
+                    </CustomButton>
                 </Flex>
             </LoginContainer>
         </Layout>
