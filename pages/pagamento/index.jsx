@@ -13,7 +13,7 @@ const Payment = () => {
 
     const PaymentForm = dynamic(
         () => {
-            return import("../../components/PaymentForm")
+            return import("../../components/form/PaymentForm")
         },
         { ssr: false }
     )

@@ -30,7 +30,7 @@ const processPayment = (req, res) => {
     return mercadopago.payment.save(payment_data)
     .then(function (response) {
       console.log("response:", response)
-      if (response.status === 201 && response.body.status === "approved") {
+      if (response.body.status === "approved") { //response.status === 201 && 
         res.redirect(`/obrigado?valor=${response.body.transaction_amount}`, [201, {
           status: response.body.status,
           status_detail: response.body.status_detail,

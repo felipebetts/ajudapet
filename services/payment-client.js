@@ -92,6 +92,6 @@ function setCardTokenAndPay(status, response) {
 
 export {
     setPaymentForm,
-    getIssuers,
+    getInstallments,
     getCardToken
 }

@@ -4,6 +4,7 @@ const theme = {
   colors: {
     primary: "#45ffb3",
     secondary: "#eee",
+    terciary: "#33c588",
     background: "#242424",
     //  {
       // primary: "#242424",

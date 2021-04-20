@@ -34,14 +34,14 @@ const ColorButton = withStyles(() => ({
     },
   }))(MuiButton);
 
-const CustomButton = ({ children, onClick, current , donate, contained, fullWidth, isLoading }) => {
+const CustomButton = ({ children, onClick, current , donate, contained, fullWidth, isLoading, type }) => {
 
     if (current) {
         return <ColorButton size="large" variant="contained">{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
     }
 
     if (donate) {
-        return <ColorButton size="large" fullWidth variant="contained" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
+        return <ColorButton size="large" type={type} fullWidth variant="contained" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
         
     }
 
