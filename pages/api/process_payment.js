@@ -37,11 +37,7 @@ const processPayment = (req, res) => {
           id: response.body.id
         }])
       } else {
-        res.status(response.status).json({
-          status: response.body.status,
-          status_detail: response.body.status_detail,
-          id: response.body.id
-        });
+        res.redirect(`/pagamento/${response.body.status}/${response.body.status_detail}`, response.status)
       }
       })
       .catch(function (error) {

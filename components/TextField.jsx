@@ -3,6 +3,8 @@ import { DonationForm, Flex } from "./Containers";
 
 const CustomTextField = withStyles({
   root: {
+    background: "inherit",
+    color: "#45ffb3",
     '& .MuiInput-input': {
       fontFamily: "Roboto Mono",
       color: "#45ffb3",
@@ -40,6 +42,9 @@ const CustomTextField = withStyles({
         border: " 1px solid #45ffb3",
       },
     },
+    '&:-internal-autofill-selected': {
+      background: "none"
+    }
   },
 })(MuiTextField)
 
@@ -53,8 +58,26 @@ const TextField = ({
   fieldWidth,
   fullWidth,
   id = "custom-text-field",
-  name
+  name,
+  payment
 }) => {
+  if (payment) {
+    return (
+      <Flex margin="20px 10px">
+        <CustomTextField
+          // value={value}
+          id={id}
+          name={name}
+          // onChange={e => onChange(e)}
+          type={type}
+          label={label}
+          variant={variant}
+          style={{ width: fieldWidth }}
+          fullWidth={fullWidth}
+        />
+      </Flex>
+    )
+  }
 
   if (!donation) {
     return (
@@ -73,6 +96,7 @@ const TextField = ({
       </Flex>
     )
   }
+
 
   return (
     <Flex>

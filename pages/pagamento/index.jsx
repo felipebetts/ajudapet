@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { LoginContainer, Layout } from "../components/Containers"
-import { H2 } from "../components/Text"
-import { createPayment, setPaymentForm } from "../services/payment-client"
+import { LoginContainer, Layout } from "../../components/Containers"
+import { H2 } from "../../components/Text"
+import { createPayment, setPaymentForm } from "../../services/payment-client"
 // import TextField from "../components/TextField"
 
 import dynamic from "next/dynamic"
@@ -13,7 +13,7 @@ const Payment = () => {
 
     const PaymentForm = dynamic(
         () => {
-            return import("../components/PaymentForm")
+            return import("../../components/PaymentForm")
         },
         { ssr: false }
     )

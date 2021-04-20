@@ -37,24 +37,19 @@ const ColorButton = withStyles(() => ({
 const CustomButton = ({ children, onClick, current , donate, contained, fullWidth, isLoading }) => {
 
     if (current) {
-        return (
-            <ColorButton size="large" variant="contained">{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
-        )
+        return <ColorButton size="large" variant="contained">{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
     }
 
     if (donate) {
-        return (
-            <ColorButton size="large" fullWidth variant="contained" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
-        )
+        return <ColorButton size="large" fullWidth variant="contained" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
+        
     }
 
     if (contained) {
-      return <ColorButton size="large" variant="contained" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
+      return <ColorButton size="large" variant="contained" fullWidth={fullWidth} onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
     }
 
-    return (
-        <ColorButton size="large" fullWidth={fullWidth} variant="outlined" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
-    )
+    return <ColorButton size="large" fullWidth={fullWidth} variant="outlined" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
 }
 
 export default CustomButton

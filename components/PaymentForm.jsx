@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { setPaymentForm, getIssuers, getCardToken } from "../services/payment-client"
+import TextField from "./TextField"
 
 
 const PaymentForm = ({ value }) => {
@@ -49,8 +50,8 @@ const PaymentForm = ({ value }) => {
             <h3>Detalhe do comprador</h3>
             <div>
                 <div>
-                    <label for="email">E-mail</label>
-                    <input id="email" name="email" type="text" />
+                    {/* <label for="email">E-mail</label> */}
+                    <TextField id="email" name="email" type="text" label="Email" payment />
                 </div>
                 <div>
                     <label for="docType">Tipo de documento</label>
