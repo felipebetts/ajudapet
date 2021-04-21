@@ -22,12 +22,12 @@ const Login = () => {
         const reg = /^[0-9\b]+$/;
 
         if (value === '' || reg.test(value)) {
-           if (target === "ddd") {
-               setDdd(value)
-           } 
-           if (target === "celular") {
-               setCelular(value)
-           } 
+            if (target === "ddd") {
+                setDdd(value)
+            }
+            if (target === "celular") {
+                setCelular(value)
+            }
         }
     }
 
@@ -72,24 +72,19 @@ const Login = () => {
                             value={celular}
                         />
                     </LoginFormContainer>
-                    {/* <Link href="/login/confirmacao"> */}
-                        <CustomButton
-                            donate
-                            onClick={() => handleSendSms()}
-                            isLoading={loading}
-                        >
-                            Receber código por SMS   
+                    <CustomButton
+                        donate
+                        onClick={() => handleSendSms()}
+                        isLoading={loading}
+                    >
+                        Receber código por SMS
                         </CustomButton>
-                    {/* </Link> */}
-                    
-                    {/* <Link href="/login/confirmacao"> */}
-                        <CustomButton
+                    {/* <CustomButton
                             fullWidth
                             onClick={() => getSms(completeNum)}
                         >
                             <WhatsAppIcon style={{ marginRight: "8px"}} /> Receber código por Whatsapp
-                        </CustomButton>
-                    {/* </Link> */}
+                        </CustomButton> */}
                 </Flex>
             </LoginContainer>
         </Layout>

@@ -4,7 +4,7 @@ import CustomButton from "../Button"
 import { Flex } from "../Containers"
 // import { FormPartTitle } from "../Text"
 import TextField from "../TextField"
-import { CardDate, CustomSelect, FormInput, FormSelect, InputContainer, PayForm, FormPart, FormPartTitle, CardFlagContainer } from "./styles"
+import { CardDate, FormInput, PayForm, FormPart, FormPartTitle, CardFlagContainer } from "./styles"
 
 
 const PaymentForm = ({ value }) => {
