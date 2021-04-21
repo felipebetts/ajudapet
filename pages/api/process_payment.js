@@ -32,20 +32,20 @@ const processPayment = (req, res) => {
     return mercadopago.payment.save(payment_data)
     .then(async function (response) {
       console.log("response.body:", response.body)
-      // if (response.body.status === "approved") { //response.status === 201 && 
-      //   // res.redirect(response , `/obrigado?valor=${response.body.transaction_amount}`, 201)
-      //   res.redirect(`/obrigado?valor=${response.body.transaction_amount}`, 201)
-      // } else {
-      //   res.redirect(`/pagamento/${response.body.status}/${response.body.status_detail}` , response.status)
-      // }
+      if (response.body.status === "approved") { //response.status === 201 && 
+        // res.redirect(response , `/obrigado?valor=${response.body.transaction_amount}`, 201)
+        res.redirect(`/obrigado?valor=${response.body.transaction_amount}`, response.status)
+      } else {
+        res.redirect(`/pagamento/${response.body.status}/${response.body.status_detail}` , response.status)
+      }
 
       // const result = await axios.post("http://localhost:3000")
 
-      res.status(response.status).json({
-        status: response.body.status,
-        status_detail: response.body.status_detail,
-        id: response.body.id
-      });
+      // res.status(response.status).json({
+      //   status: response.body.status,
+      //   status_detail: response.body.status_detail,
+      //   id: response.body.id
+      // });
       })
       .catch(function (error) {
         res.status(500).send(error);
