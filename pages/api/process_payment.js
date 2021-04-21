@@ -1,5 +1,7 @@
 // import mercadopago from "mercadopago"
 
+import axios from 'axios';
+
 const processPayment = (req, res) => {
   if (req.method === "POST") {
     var mercadopago = require('mercadopago');
@@ -28,7 +30,7 @@ const processPayment = (req, res) => {
     console.log("payment_data:", payment_data)
     
     return mercadopago.payment.save(payment_data)
-    .then(function (response) {
+    .then(async function (response) {
       console.log("response.body:", response.body)
       // if (response.body.status === "approved") { //response.status === 201 && 
       //   // res.redirect(response , `/obrigado?valor=${response.body.transaction_amount}`, 201)
@@ -36,6 +38,8 @@ const processPayment = (req, res) => {
       // } else {
       //   res.redirect(`/pagamento/${response.body.status}/${response.body.status_detail}` , response.status)
       // }
+
+      // const result = await axios.post("http://localhost:3000")
 
       res.status(response.status).json({
         status: response.body.status,

@@ -72,15 +72,16 @@ async function getCardToken(e) {
         console.log("$form: ", $form)
         window.Mercadopago.createToken($form, setCardTokenAndPay);
         return false;
-    } else {
-        const reqBody = {
+    } 
+    // else {
+    //     const reqBody = {
             
-        }
+    //     }
 
-        const result = await axios.post("http://localhost:3000/donation/process_payment", {
+    //     const result = await axios.post("http://localhost:3000/donation/process_payment", {
 
-        }) 
-    }
+    //     }) 
+    // }
 };
 
 function setCardTokenAndPay(status, response) {

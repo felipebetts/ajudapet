@@ -55,7 +55,10 @@ const PaymentForm = ({ value }) => {
 
     //  http://localhost:3000/donation/process_payment
     return (
-        <PayForm action="/api/process_payment" method="post" id="paymentForm" onSubmit={e => getCardToken(e)}>
+        <PayForm action="/api/process_payment" method="post" id="paymentForm" onSubmit={e => {
+            getCardToken(e)
+            console.log("submit")
+        }}>
             <FormPartTitle>Detalhe do comprador</FormPartTitle>
             <FormPart>
                 <FormInput>
@@ -127,7 +130,8 @@ const PaymentForm = ({ value }) => {
                     <input variant="outlined" type="hidden" name="paymentMethodId" id="paymentMethodId" />
                     <input variant="outlined" type="hidden" name="description" id="description" />
                     <br />
-                    <CustomButton variant="contained" type="submit" isLoading={isLoading} onClick={() => setIsLoading(true)}>Doar</CustomButton>
+                    <CustomButton type="submit" isLoading={isLoading} onClick={() => setIsLoading(true)} variant="contained">Doar</CustomButton> 
+                    
                     {/* <button type="submit"></button> */}
                     <br />
                 </div>

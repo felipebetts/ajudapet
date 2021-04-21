@@ -34,7 +34,7 @@ const ColorButton = withStyles(() => ({
     },
   }))(MuiButton);
 
-const CustomButton = ({ children, onClick, current , contained, fullWidth, isLoading = false, type, variant = "outlined" }) => {
+const CustomButton = ({ children, onClick, fullWidth, isLoading = false, variant = "outlined", type = "button" }) => {
 
     return (
       <ColorButton 
@@ -42,6 +42,7 @@ const CustomButton = ({ children, onClick, current , contained, fullWidth, isLoa
         fullWidth={fullWidth}
         variant={variant}
         onClick={onClick}
+        type={type}
       >
         { isLoading ? <CircularProgress color="inherit" size={21} /> : children}
       </ColorButton>
