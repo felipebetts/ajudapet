@@ -8,7 +8,7 @@ const GroupButton = ({ value, onClick }) => {
             { donationValues.map((v, i) => {
                 if (v === value) {
                     return (
-                        <Button isLoading={false} key={i} current onClick={() => onClick(v)}>{`R$${v},00`}</Button>
+                        <Button isLoading={false} key={i} variant="contained" onClick={() => onClick(v)}>{`R$${v},00`}</Button>
                     )
                 } else {
                     return (

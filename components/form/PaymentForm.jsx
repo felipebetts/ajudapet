@@ -127,7 +127,7 @@ const PaymentForm = ({ value }) => {
                     <input variant="outlined" type="hidden" name="paymentMethodId" id="paymentMethodId" />
                     <input variant="outlined" type="hidden" name="description" id="description" />
                     <br />
-                    <CustomButton donate type="submit" isLoading={isLoading} onClick={() => setIsLoading(true)}>Doar</CustomButton>
+                    <CustomButton variant="contained" type="submit" isLoading={isLoading} onClick={() => setIsLoading(true)}>Doar</CustomButton>
                     {/* <button type="submit"></button> */}
                     <br />
                 </div>

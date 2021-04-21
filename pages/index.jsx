@@ -50,7 +50,7 @@ const Main = () => {
               query: { valor: currentValue },
             }}
           >
-            <Button isLoading={false} donate>Doar</Button>
+            <Button isLoading={false} variant="contained">Doar</Button>
           </Link>
         </Flex>
         <Flex>

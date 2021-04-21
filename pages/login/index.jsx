@@ -73,7 +73,8 @@ const Login = () => {
                         />
                     </LoginFormContainer>
                     <CustomButton
-                        donate
+                        variant="contained"
+                        fullWidth
                         onClick={() => handleSendSms()}
                         isLoading={loading}
                     >

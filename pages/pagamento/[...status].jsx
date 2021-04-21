@@ -114,7 +114,7 @@ const PaymentStatus = () => {
                         {formattedDetail}
                     </Parag>
                     <CustomButton
-                        contained
+                        variant="contained"
                         fullWidth
                         onClick={() => {
                             router.back()
