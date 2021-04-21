@@ -53,7 +53,7 @@ const PaymentForm = ({ value }) => {
         setCardNumber(e.target.value)
     }
 
-    //  
+    //  http://localhost:3000/donation/process_payment
     return (
         <PayForm action="/api/process_payment" method="post" id="paymentForm" onSubmit={e => getCardToken(e)}>
             <FormPartTitle>Detalhe do comprador</FormPartTitle>
