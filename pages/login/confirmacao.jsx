@@ -69,7 +69,7 @@ const LoginConfirmation = () => {
                 </Flex>
                 <Flex>
                     <CustomButton
-                        contained
+                        variant="contained"
                         onClick={() => cel ? handleCheckSms() : false}
                     >
                         Confirmar
