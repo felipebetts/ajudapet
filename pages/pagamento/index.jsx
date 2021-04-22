@@ -1,29 +1,45 @@
 import { useEffect, useState } from "react"
-import { LoginContainer, Layout } from "../components/Containers"
-import { H2 } from "../components/Text"
-import { createPayment, setPaymentForm } from "../services/payment-client"
+import { LoginContainer, Layout } from "../../components/Containers"
+import { H2 } from "../../components/Text"
+import { createPayment, setPaymentForm } from "../../services/payment-client"
 // import TextField from "../components/TextField"
 
 import dynamic from "next/dynamic"
+import { useRouter } from "next/router"
+import { CircularProgress } from "@material-ui/core"
 
 
 const Payment = () => {
 
     const PaymentForm = dynamic(
         () => {
-            return import("../components/PaymentForm")
+            return import("../../components/form/PaymentForm")
         },
         { ssr: false }
     )
 
-    return (
-        <Layout>
-            <LoginContainer>
-                <H2>Pagamento</H2>
-                <PaymentForm />
-            </LoginContainer>
-        </Layout>
-    )
+    const { query } = useRouter()
+    const valor = query.valor
+
+    if (valor !== undefined) {
+        return (
+            <Layout>
+                <LoginContainer>
+                    <H2>Pagamento</H2>
+                    <PaymentForm value={valor} />
+                </LoginContainer>
+            </Layout>
+        )
+    } else {
+        return (
+            <Layout>
+                <LoginContainer>
+                    <H2>Pagamento</H2>
+                    <CircularProgress color="inherit" />
+                </LoginContainer>
+            </Layout>
+        )
+    }
 }
 
 export default Payment

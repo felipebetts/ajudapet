@@ -1,19 +1,23 @@
 import { client } from "./api-client";
-import { _baseUrl, localStorageKey } from "../utils/constants";
+import { _baseUrl, localStorageKeyToken, localStorageKeyUserId } from "../utils/constants";
 
 
 function handleUserResponse({ data = null, errors = null, ...rest }) {
     console.log("data: ", data)
     console.log("data.token: ", data.token)
-    window.localStorage.setItem(localStorageKey, data && data.token);
+    window.localStorage.setItem(localStorageKeyToken, data && data.token);
+    window.localStorage.setItem(localStorageKeyUserId, data._id);
 
-    console.log(window.localStorage.getItem(localStorageKey))
+    console.log(window.localStorage.getItem(localStorageKeyToken))
 
     if (errors) {
         logout();
         return Promise.reject(errors);
     }
-    return rest;
+    return {
+        ...rest,
+        data
+    };
 }
 
 function handleRegisterUser({ success, message, errors = null, ...rest }) {
@@ -56,7 +60,8 @@ function login(telefone) {
 }
 
 function logout() {
-    window.localStorage.removeItem(localStorageKey);
+    window.localStorage.removeItem(localStorageKeyToken);
+    window.localStorage.removeItem(localStorageKeyUserId);
 
     return Promise.resolve();
 }
@@ -92,12 +97,12 @@ function getCurrentUser() {
         });
 }
 
-function getUser(userId) {
-    return client(`users/help/${userId}`);
+async function getUser(userId) {
+    return await client(`users/help/${userId}`);
 }
 
 function getToken() {
-    return window.localStorage.getItem(localStorageKey);
+    return window.localStorage.getItem(localStorageKeyToken);
 }
 
 // function handleUpdateUser({ data, errors = null, ...rest }) {

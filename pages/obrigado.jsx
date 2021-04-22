@@ -2,13 +2,33 @@ import { Layout, LoginContainer } from "../components/Containers"
 import { H2, Parag } from "../components/Text"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { localStorageKeyUserId } from "../utils/constants"
+import { getCurrentUser } from "../services/auth-client"
 
 const Thanks = () => {
+
+    const { query } = useRouter()
+    
+    // useEffect(() => {
+    //     console.log("valor: ", query.valor)
+    // }, [query.valor])
+
+    if (query.valor !== undefined) {
+        console.log("valor: ", query.valor)
+        var valor = query.valor
+    }
+
+    // if (window !== undefined) {
+    //     console.log("user: ", getCurrentUser())
+    // }
+    
+    
     return (
         <Layout>
             <LoginContainer>
                 <H2>Obrigado pela sua doação!</H2>
-                <Parag>A doação de R$50,00 para o AjudaPet foi confirmada. A sua contribuição ajuda muito os pets!</Parag>
+                <Parag>A doação de R${ !valor ? "..." : valor} para o AjudaPet foi confirmada. A sua contribuição ajuda muito os pets!</Parag>
                 <Image
                     src="/images/pequena.jpg"
                     height={250}

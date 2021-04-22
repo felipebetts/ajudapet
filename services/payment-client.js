@@ -1,5 +1,10 @@
+import axios from "axios";
+import { localStorageKeyUserId } from "../utils/constants";
+import { formatFormData } from "../utils/formatFormData";
+import Router from "next/router"
+
 const setPaymentForm = async () => {
-    await window.Mercadopago.setPublishableKey("APP_USR-3e996c15-a37c-4132-9922-115091bd1d11");
+    await window.Mercadopago.setPublishableKey("TEST-de473f1e-611d-4f6f-9182-58ef3bff040f");
 
     await window.Mercadopago.getIdentificationTypes();
 
@@ -61,14 +66,14 @@ function setInstallments(status, response) {
 
 
 var doSubmit = false;
-function getCardToken(event) {
-    event.preventDefault();
+async function getCardToken(e) {
+    e.preventDefault();
     if (!doSubmit) {
         let $form = document.getElementById('paymentForm');
         console.log("$form: ", $form)
         window.Mercadopago.createToken($form, setCardTokenAndPay);
         return false;
-    }
+    } 
 };
 
 function setCardTokenAndPay(status, response) {
@@ -82,16 +87,67 @@ function setCardTokenAndPay(status, response) {
         console.log("card: ", card)
         form.appendChild(card);
         console.log("form: ", form)
+      
+        console.log("formattedFormData: ", formatFormData(form))
         doSubmit = true;
-        const submitting = form.submit();
-        console.log("submitting: ", submitting)
+        // form.submit();
+        submitForm(formatFormData(form))
     } else {
         alert("Verify filled data!\n" + JSON.stringify(response, null, 4));
     }
 };
 
+const submitForm = form => {
+
+    console.log("submit ", form)
+
+    const donation = form.transactionAmount
+
+    axios.post("http://localhost:3000/donation/process_payment", form)
+        .then(res => {
+            console.log(res.data)
+            if (res.data.status === "approved") {
+                registerUserDonation(donation)
+            } else {
+                console.log("pagamento não aprovado")
+                Router.push(`/pagamento/${res.data.status}/${res.data.status_detail}`)
+            }
+            return res
+        })
+        .then(res => {
+            if (res.data.status === "approved") {
+                Router.push(`/obrigado?valor=${donation}`)
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+const registerUserDonation = (donation) => {
+    const _id = window.localStorage.getItem(localStorageKeyUserId)
+    console.log("_id: ", _id)
+    console.log("donation: ", donation)
+
+    const reqData = {
+        _id,
+        donation
+    }
+
+    axios.post("http://localhost:3000/donation/register_donation", reqData)
+        .then(res => {
+            console.log(res)
+        })
+}
+
+// async function
+
+
 export {
     setPaymentForm,
-    getIssuers,
+    getInstallments,
     getCardToken
 }
+
+// const user = getCurrentUser()
+// console.log(user)

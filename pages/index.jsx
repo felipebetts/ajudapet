@@ -44,8 +44,13 @@ const Main = () => {
         </Flex>
         {/* <p>Selecione um valor para doar.</p> */}
         <Flex margin="30px 0px 0px 0px">
-          <Link href="/login">
-            <Button donate>Doar</Button>
+          <Link 
+            href={{
+              pathname: '/login',
+              query: { valor: currentValue },
+            }}
+          >
+            <Button isLoading={false} variant="contained">Doar</Button>
           </Link>
         </Flex>
         <Flex>

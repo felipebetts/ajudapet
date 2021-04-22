@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import MuiButton from '@material-ui/core/Button';
 import { CircularProgress } from '@material-ui/core';
 
 const ColorButton = withStyles(() => ({
@@ -32,29 +32,21 @@ const ColorButton = withStyles(() => ({
     fullWidth: {
         width: "100%"
     },
-  }))(Button);
+  }))(MuiButton);
 
-const CustomButton = ({ children, onClick, current , donate, contained, fullWidth, isLoading }) => {
-
-    if (current) {
-        return (
-            <ColorButton size="large" variant="contained">{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
-        )
-    }
-
-    if (donate) {
-        return (
-            <ColorButton size="large" fullWidth variant="contained" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
-        )
-    }
-
-    if (contained) {
-      return <ColorButton size="large" variant="contained" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
-    }
+const CustomButton = ({ children, onClick, fullWidth, isLoading = false, variant = "outlined", type = "button" }) => {
 
     return (
-        <ColorButton size="large" fullWidth={fullWidth} variant="outlined" onClick={onClick}>{ isLoading ? <CircularProgress color="inherit" size={21} /> : children}</ColorButton>
-    )
+      <ColorButton 
+        size="large"
+        fullWidth={fullWidth}
+        variant={variant}
+        onClick={onClick}
+        type={type}
+      >
+        { isLoading ? <CircularProgress color="inherit" size={21} /> : children}
+      </ColorButton>
+    ) 
 }
 
 export default CustomButton
