@@ -61,16 +61,20 @@ const Login = () => {
                             type="number"
                             onChange={(e) => onChange(e.target.value, "ddd")}
                             value={ddd}
-                        />
+                            payment
+                            fontSize="3rem"
+                            />
                         <TextField
                             variant="outlined"
-                            label="Celular"
-                            fieldWidth="120px"
+                            label="Celular "
+                            fieldWidth="110px"
                             // fullWidth
                             type="number"
                             onChange={(e) => onChange(e.target.value, "celular")}
                             value={celular}
-                        />
+                            payment
+                            fontSize="3rem"
+                            />
                     </LoginFormContainer>
                     <CustomButton
                         variant="contained"

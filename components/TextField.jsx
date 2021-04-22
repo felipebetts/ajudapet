@@ -61,6 +61,7 @@ const TextField = ({
   id = "custom-text-field",
   name,
   payment,
+  fontSize = "inherit"
 }) => {
 
   // useEffect(() => {
@@ -105,7 +106,7 @@ const TextField = ({
           type={type}
           label={label}
           variant={variant}
-          style={{ width: fieldWidth }}
+          style={{ width: fieldWidth, fontSize: fontSize }}
           fullWidth={fullWidth}
         />
       </Flex>
@@ -118,7 +119,7 @@ const TextField = ({
         width="100%"
       >
         <DonationForm>
-          <label style={{ fontSize: "1.3rem" }}>R$</label>
+          <label style={{ fontSize: "1.9rem" }}>R$</label>
           <CustomTextField
             value={value}
             id={id}
@@ -130,7 +131,7 @@ const TextField = ({
             // style={{ width: fieldWidth }}
           />
         </DonationForm>
-        <label htmlFor={id} style={{ cursor: "pointer" }}>Editar</label>
+        <label htmlFor={id} style={{ cursor: "pointer", fontSize: "0.8rem" }}>Editar</label>
       </Flex>
     )
   }
