@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { LoginContainer, Layout } from "../../components/Containers"
+import { MainContainer, Layout } from "../../components/Containers"
 import { H2 } from "../../components/Text"
 import { createPayment, setPaymentForm } from "../../services/payment-client"
 // import TextField from "../components/TextField"
@@ -24,19 +24,19 @@ const Payment = () => {
     if (valor !== undefined) {
         return (
             <Layout>
-                <LoginContainer>
+                <MainContainer>
                     <H2>Pagamento</H2>
                     <PaymentForm value={valor} />
-                </LoginContainer>
+                </MainContainer>
             </Layout>
         )
     } else {
         return (
             <Layout>
-                <LoginContainer>
+                {/* <MainContainer> */}
                     <H2>Pagamento</H2>
                     <CircularProgress color="inherit" />
-                </LoginContainer>
+                {/* </MainContainer> */}
             </Layout>
         )
     }

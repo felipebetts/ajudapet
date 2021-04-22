@@ -50,7 +50,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active
 {
- -webkit-box-shadow: 0 0 0 30px #343434 inset !important;
+ -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.background} inset !important;
  -webkit-text-fill-color: ${({ theme }) => theme.colors.primary} !important;
 }
 

@@ -23,7 +23,7 @@ export const FormInput = styled.div`
     align-items: center;
     justify-content: flex-end;
     font-size: 1.1rem;
-    margin-top: 20px;
+    margin-top: 10px;
     
     
     label {
@@ -92,7 +92,7 @@ export const FormInput = styled.div`
         label{
             width: 100%;
             text-align: left;
-            margin: 10px;
+            // margin: 10px;
             margin-left: 30px;
         }
         

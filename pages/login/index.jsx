@@ -1,6 +1,6 @@
 import { useState } from "react"
 import CustomButton from "../../components/Button"
-import { Flex, Layout, LoginContainer, LoginFormContainer } from "../../components/Containers"
+import { Flex, Layout, MainContainer, LoginFormContainer } from "../../components/Containers"
 import { H2, Parag } from "../../components/Text"
 import TextField from "../../components/TextField"
 
@@ -46,7 +46,7 @@ const Login = () => {
 
     return (
         <Layout>
-            <LoginContainer>
+            <MainContainer>
                 <H2>Acesse ou crie sua conta </H2>
                 <Parag>Digite seu celular para entrar. Seus dados estão seguros e você não precisa de senha.</Parag>
                 <Flex
@@ -87,7 +87,7 @@ const Login = () => {
                             <WhatsAppIcon style={{ marginRight: "8px"}} /> Receber código por Whatsapp
                         </CustomButton> */}
                 </Flex>
-            </LoginContainer>
+            </MainContainer>
         </Layout>
     )
 }

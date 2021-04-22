@@ -13,7 +13,7 @@ import Indicators from "../components/Indicators";
 
 const Main = () => {
 
-  const [currentValue, setCurrentValue] = useState(50)
+  const [currentValue, setCurrentValue] = useState(50.00)
 
   const onChange = (value) => {
     const reg = /^[0-9\b]+$/;
@@ -27,13 +27,14 @@ const Main = () => {
     <Layout>
       <Header />
       <Flex column>
-        <Flex column>
+        <Flex column margin="0">
           <H2>Selecione um valor para doar.</H2>
           <TextField
             value={currentValue}
             onChange={(e) => onChange(e.target.value)}
             type="number"
             donation
+            // fieldWidth="100%"
           />
         </Flex>
         <Flex margin="10px 0px">

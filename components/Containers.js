@@ -1,4 +1,4 @@
-import styled, { ThemeConsumer } from "styled-components"
+import styled from "styled-components"
 
 export const Layout = styled.div`
     padding: 1rem;
@@ -15,6 +15,9 @@ export const Flex = styled.div`
 
     flex-direction:${props => props.column ? "column" : "row"};
     ${props => props.margin ? `margin: ${props.margin};` : ''}
+    ${props => props.alignItems ? `align-items: ${props.alignItems};` : ''}
+    ${props => props.justifyContent ? `justify-content: ${props.justifyContent};` : ''}
+    ${props => props.width ? `width: ${props.width};` : ''}
 `
 
 export const LogoContainer = styled.div`
@@ -44,9 +47,25 @@ export const DonationForm = styled.form`
     width: 150px;
 
     margin: 20px 10px;
+    margin-top: 5px;
+    margin-right: 0;
 
     display: flex;
     align-items: center;
+`
+
+export const MainContainer = styled.div`
+margin: auto;
+margin-top: 8%;
+padding: 15px;
+max-width: 600px;
+
+
+text-align: center;
+
+@media(min-width: 576px) {
+    padding: 15px 10%;
+};
 `
 
 export const LoginContainer = styled.div`

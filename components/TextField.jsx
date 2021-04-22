@@ -1,4 +1,5 @@
 import { Input, withStyles, TextField as MuiTextField } from "@material-ui/core";
+import { useEffect } from "react";
 import { DonationForm, Flex } from "./Containers";
 
 const CustomTextField = withStyles({
@@ -59,8 +60,40 @@ const TextField = ({
   fullWidth,
   id = "custom-text-field",
   name,
-  payment
+  payment,
 }) => {
+
+  // useEffect(() => {
+  //   var min = 100, max = 300, pad_right = 0
+  //   const input = document.getElementById(id);
+
+  //   input.style.width = min+'px';
+  //   input.onkeypress = input.onkeydown = input.onkeyup = function(){
+  //       var input = this;
+  //       setTimeout(function(){
+  //           var tmp = document.createElement('div');
+  //           tmp.style.padding = '0';
+  //           if(getComputedStyle)
+  //               tmp.style.cssText = getComputedStyle(input, null).cssText;
+  //           if(input.currentStyle)
+  //               tmp.style.cssText = input.currentStyle.cssText;
+  //           tmp.style.width = '';
+  //           tmp.style.position = 'absolute';
+  //           tmp.innerHTML = input.value.replace(/&/g, "&amp;")
+  //                                      .replace(/</g, "&lt;")
+  //                                      .replace(/>/g, "&gt;")
+  //                                      .replace(/"/g, "&quot;")
+  //                                      .replace(/'/g, "&#039;")
+  //                                      .replace(/ /g, '&nbsp;');
+  //           input.parentNode.appendChild(tmp);
+  //           var width = tmp.clientWidth+pad_right+1;
+  //           tmp.parentNode.removeChild(tmp);
+  //           if(min <= width && width <= max)
+  //               input.style.width = width+'px';
+  //       }, 1);
+  //   }
+  // }, [value])
+
   if (payment) {
     return (
       <Flex margin="20px 10px">
@@ -78,41 +111,43 @@ const TextField = ({
       </Flex>
     )
   }
-
-  if (!donation) {
+  if (donation) {
     return (
-      <Flex margin="20px 10px">
-        <CustomTextField
-          value={value}
-          id={id}
-          name={name}
-          onChange={e => onChange(e)}
-          type={type}
-          label={label}
-          variant={variant}
-          style={{ width: fieldWidth }}
-          fullWidth={fullWidth}
-        />
+      <Flex
+        alignItems="flex-start"
+        width="100%"
+      >
+        <DonationForm>
+          <label style={{ fontSize: "1.3rem" }}>R$</label>
+          <CustomTextField
+            value={value}
+            id={id}
+            onChange={e => onChange(e)}
+            type={type}
+            step="0.01"
+            label={label}
+            variant={variant}
+            // style={{ width: fieldWidth }}
+          />
+        </DonationForm>
+        <label htmlFor={id} style={{ cursor: "pointer" }}>Editar</label>
       </Flex>
     )
   }
 
-
   return (
-    <Flex>
-      <DonationForm>
-      <label style={{ fontSize: "1.3rem"}}>R$</label>
-        <CustomTextField
-          value={value}
-          id={id}
-          onChange={e => onChange(e)}
-          type={type}
-          label={label}
-          variant={variant}
-          style={{ width: fieldWidth }}
-        />
-      </DonationForm>
-        <label htmlFor={id} style={{ cursor: "pointer" }}>Editar</label>
+    <Flex margin="20px 10px">
+      <CustomTextField
+        value={value}
+        id={id}
+        name={name}
+        onChange={e => onChange(e)}
+        type={type}
+        label={label}
+        variant={variant}
+        style={{ width: fieldWidth }}
+        fullWidth={fullWidth}
+      />
     </Flex>
   )
 }
