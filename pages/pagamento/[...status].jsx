@@ -1,7 +1,7 @@
 import { CircularProgress } from "@material-ui/core"
 import { useRouter } from "next/router"
 import CustomButton from "../../components/Button"
-import { Flex, Layout, LoginContainer } from "../../components/Containers"
+import { Flex, Layout, MainContainer } from "../../components/Containers"
 import { H3, Parag } from "../../components/Text"
 
 import Link from "next/link"
@@ -108,25 +108,26 @@ const PaymentStatus = () => {
 
         return (
             <Layout>
-                <LoginContainer>
+                <MainContainer>
                     <H3>{formattedState}</H3>
                     <Parag>
                         {formattedDetail}
                     </Parag>
-                    <CustomButton
-                        variant="contained"
-                        fullWidth
-                        onClick={() => {
-                            router.back()
-                        }}>
-                        Retornar ao pagamento
+                    <div style={{ margin: "0px 5%" }}>
+                        <CustomButton
+                            variant="contained"
+                            fullWidth
+                            onClick={() => {
+                                router.back()
+                            }}
+                        >
+                            Retornar ao pagamento
                         </CustomButton>
-                </LoginContainer>
+                    </div>
+                </MainContainer>
                 <Flex column margin="10px">
                     <Link href="/">
-                        {/* <a style={{ marginTop: "15px" }}> */}
-                            Retornar à página inicial
-                        {/* </a> */}
+                        Retornar à página inicial
                     </Link>
                 </Flex>
             </Layout>
@@ -134,9 +135,9 @@ const PaymentStatus = () => {
     } else {
         return (
             <Layout>
-                <LoginContainer>
+                <MainContainer>
                     <CircularProgress color="inherit" />
-                </LoginContainer>
+                </MainContainer>
             </Layout>
         )
     }

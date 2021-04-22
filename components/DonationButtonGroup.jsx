@@ -2,7 +2,7 @@ import Button from "../components/Button"
 import { ButtonGroup } from "../components/Containers"
 
 const GroupButton = ({ value, onClick }) => {
-    const donationValues = [5, 10, 20, 50, 100, 500]
+    const donationValues = [1, 10, 25, 50, 100, 500, 1000]
     return (
         <ButtonGroup>
             { donationValues.map((v, i) => {

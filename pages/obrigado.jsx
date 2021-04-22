@@ -1,4 +1,4 @@
-import { Layout, LoginContainer } from "../components/Containers"
+import { Layout, MainContainer } from "../components/Containers"
 import { H2, Parag } from "../components/Text"
 import Image from "next/image"
 import Link from "next/link"
@@ -26,7 +26,7 @@ const Thanks = () => {
     
     return (
         <Layout>
-            <LoginContainer>
+            <MainContainer>
                 <H2>Obrigado pela sua doação!</H2>
                 <Parag>A doação de R${ !valor ? "..." : valor} para o AjudaPet foi confirmada. A sua contribuição ajuda muito os pets!</Parag>
                 <Image
@@ -38,7 +38,7 @@ const Thanks = () => {
                 <Link href="/">
                     <a>Retornar à página inicial.</a>
                 </Link>
-            </LoginContainer>
+            </MainContainer>
         </Layout>
     )
 }

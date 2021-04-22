@@ -2,7 +2,7 @@ import axios from "axios"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import CustomButton from "../../components/Button"
-import { Flex, Layout, LoginContainer } from "../../components/Containers"
+import { Flex, Layout, MainContainer } from "../../components/Containers"
 import { H2, Parag } from "../../components/Text"
 import TextField from "../../components/TextField"
 
@@ -47,7 +47,7 @@ const LoginConfirmation = () => {
 
     return (
         <Layout>
-            <LoginContainer>
+            <MainContainer>
                 <H2>Digite o código de acesso</H2>
                 <Parag>Insira o código de 6 dígitos que enviamos para o número <strong>{cel}</strong>.</Parag>
                 <TextField
@@ -75,7 +75,7 @@ const LoginConfirmation = () => {
                         Confirmar
                     </CustomButton>
                 </Flex>
-            </LoginContainer>
+            </MainContainer>
         </Layout>
     )
 }
