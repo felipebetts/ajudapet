@@ -1,7 +1,10 @@
+import Link from "next/link"
 import { useEffect, useState } from "react"
+import { getCurrentUser } from "../../services/auth-client"
 import { setPaymentForm, getInstallments, getCardToken } from "../../services/payment-client"
 import CustomButton from "../Button"
 import { Flex } from "../Containers"
+import { H3 } from "../Text"
 // import { FormPartTitle } from "../Text"
 import TextField from "../TextField"
 import { CardDate, FormInput, PayForm, FormPart, FormPartTitle, CardFlagContainer } from "./styles"
@@ -13,6 +16,7 @@ const PaymentForm = ({ value }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [cardNumber, setCardNumber] = useState("")
     const [cardFlag, setCardFlag] = useState({ show: false, src: "" })
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
 
 
     useEffect(() => {
@@ -20,6 +24,13 @@ const PaymentForm = ({ value }) => {
     }, [value])
 
     setPaymentForm()
+
+    getCurrentUser()
+        .then(res => {
+            if (!res || !res.data) {
+                setIsLoggedIn(false)
+            }
+        }) 
 
     useEffect(() => {
         let textLength = cardNumber.length
@@ -51,6 +62,22 @@ const PaymentForm = ({ value }) => {
 
     const handleChange = (e) => {
         setCardNumber(e.target.value)
+    }
+
+    if (!isLoggedIn) {
+        return (
+            <>
+                <H3 secondary style={{ margin: "50px 0px"}}>Você ainda não iniciou sua sessão.</H3>
+                <Flex column>
+                    <Link href={`/login?valor=${value}`}>
+                        Entre na sua conta ou cadastre-se
+                    </Link>
+                    <Link href='/'>
+                        <a style={{ marginTop: "15px" }}>Retornar à página inicial.</a>
+                    </Link>
+                </Flex>
+            </>
+        )
     }
 
     //  http://localhost:3000/donation/process_payment
