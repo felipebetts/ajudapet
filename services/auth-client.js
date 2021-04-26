@@ -1,10 +1,11 @@
 import { client } from "./api-client";
 import { _baseUrl, localStorageKeyToken, localStorageKeyUserId } from "../utils/constants";
+import { formatPhoneNumber } from "../utils/formatPhoneNumber";
 
 
 function handleUserResponse({ data = null, errors = null, ...rest }) {
-    console.log("data: ", data)
-    console.log("data.token: ", data.token)
+    // console.log("data: ", data)
+    // console.log("data.token: ", data.token)
     window.localStorage.setItem(localStorageKeyToken, data && data.token);
     window.localStorage.setItem(localStorageKeyUserId, data._id);
 
@@ -35,14 +36,37 @@ function getSms(telefone) {
     }
 
     return client("account/getSms", { body: reqData })
-        .then(res => console.log(res))
 }
 
 function checkSms(code, telefone) {
 
+    // console.log("checkSms")
+    // console.log("telefone: ", telefone)
+    // console.log("telefone.length: ", telefone.length)
+    
+    
+    // console.log("telefoneSemDdd: ", telefoneSemDdd)
+    // console.log("formattedPhone: ", formattedPhone)
+    // console.log("formattedPhone.length: ", formattedPhone.length)
+    // console.log(ddd[0])
+    // console.log(ddd.substring(1, ddd.length))
+    // if (ddd[0] === 0) {
+    //     ddd = ddd.substring(1, ddd.length)
+    //     console.log("ddd: ", ddd)
+    // }
+
+    // if (ddd.length === 2) {
+    //     console.log(formattedPhone)
+    // }
+    // if (telefone.length <= 11) {
+    //     ddd = 
+    // } else {
+    //     console.log("ddd: ", telefone.substring(0, telefone.length - 9))
+    // }
+
     const reqData = {
         code,
-        telefone
+        telefone: formatPhoneNumber(telefone)
     }
 
     return client("account/checkSms", { body: reqData })

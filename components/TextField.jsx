@@ -128,6 +128,7 @@ const TextField = ({
             step="0.01"
             label={label}
             variant={variant}
+            // inputProps={{ step: 0.01 }}
             // style={{ width: fieldWidth }}
           />
         </DonationForm>

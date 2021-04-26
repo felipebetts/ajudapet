@@ -1,5 +1,5 @@
 import axios from "axios"
-import Link from "next/link"
+import NextLink from "next/link"
 import { useEffect, useState } from "react"
 import CustomButton from "../../components/Button"
 import { Flex, Layout, MainContainer } from "../../components/Containers"
@@ -7,12 +7,15 @@ import { H2, Parag } from "../../components/Text"
 import TextField from "../../components/TextField"
 
 import { useRouter } from "next/router"
-import { checkSms, getCurrentUser } from "../../services/auth-client"
+import { checkSms, getCurrentUser, getSms } from "../../services/auth-client"
+import { formatPhoneNumber } from "../../utils/formatPhoneNumber"
+import { CircularProgress, Link } from "@material-ui/core"
 
 
 const LoginConfirmation = () => {
 
     const [secret, setSecret] = useState("")
+    const [isLoadingNewCode, setIsLoadingNewCode] = useState(false)
 
     const { query } = useRouter()
     const router = useRouter()
@@ -33,10 +36,11 @@ const LoginConfirmation = () => {
         checkSms(secret, cel)
             .then(async res => {
                 console.log("res:", res)
-                const user = await getCurrentUser(res.data.token)
+                const user = await getCurrentUser()
+                console.log("user:", user)
+
                 const valor = query.valor
                 if (user && valor) {
-                    console.log("user defined: ", user)
                     router.push({
                         pathname: "/pagamento",
                         query: { valor: valor }
@@ -45,39 +49,64 @@ const LoginConfirmation = () => {
             })
     }
 
-    return (
-        <Layout>
-            <MainContainer>
-                <H2>Digite o código de acesso</H2>
-                <Parag>Insira o código de 6 dígitos que enviamos para o número <strong>{cel}</strong>.</Parag>
-                <TextField
-                    onChange={e => onChange(e)}
-                    value={secret}
-                    variant="outlined"
-                />
-                <Flex column margin="0">
-                    <Link href="/">
-                        <a>
-                            Enviar código novamente para {cel}
-                        </a>
-                    </Link>
-                    <Link href="/login">
-                        <a style={{ marginTop: "10px" }}>
-                            Alterar o número telefone
-                        </a>
-                    </Link>
-                </Flex>
-                <Flex>
-                    <CustomButton
-                        variant="contained"
-                        onClick={() => cel ? handleCheckSms() : false}
-                    >
-                        Confirmar
-                    </CustomButton>
-                </Flex>
-            </MainContainer>
-        </Layout>
-    )
+    if (!cel) {
+        return (
+            <Layout>
+                <MainContainer>
+                    <CircularProgress color="inherit" />
+                </MainContainer>
+            </Layout>
+        )
+    } else {
+        return (
+            <Layout>
+                <MainContainer>
+                    <H2>Digite o código de acesso</H2>
+                    <Parag>Insira o código de 6 dígitos que enviamos para o número <strong>{formatPhoneNumber(cel)}</strong></Parag>
+                    <TextField
+                        onChange={e => onChange(e)}
+                        value={secret}
+                        variant="outlined"
+                    />
+                    <Flex column margin="30px 0px">
+                        <CustomButton
+                            variant="contained"
+                            onClick={() => cel ? handleCheckSms() : false}
+                        >
+                            Confirmar
+                            </CustomButton>
+                        <Flex column>
+                            <NextLink href="/login">
+                                <a style={{ marginBottom: "10px" }}>
+                                    Alterar o número telefone
+                                </a>
+                            </NextLink>
+                            <CustomButton
+                                // variant="contained"
+                                width="220px"
+                                size="medium"
+                                isLoading={isLoadingNewCode}
+                                onClick={() => {
+                                    setIsLoadingNewCode(true)
+                                    getSms(cel)
+                                    .then(res => {
+                                        console.log("res: ", res)
+                                        console.log("novo codigo")
+                                        if (res.data.situacao === "OK") {
+                                            setIsLoadingNewCode(false)
+                                        }
+                                    })
+                                }}
+                            >
+                                Enviar novo código
+                        </CustomButton>
+                        </Flex>
+                    </Flex>
+                </MainContainer>
+            </Layout>
+        )
+    }
+
 }
 
 export default LoginConfirmation

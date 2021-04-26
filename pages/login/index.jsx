@@ -13,7 +13,7 @@ const Login = () => {
     const [ddd, setDdd] = useState("")
     const [celular, setCelular] = useState("")
     const [loading, setLoading] = useState(false)
-    const completeNum = "55" + ddd + celular
+    const completeNum =  ddd + celular //"55" +
 
     const router = useRouter()
     const { query } = useRouter()
@@ -33,15 +33,25 @@ const Login = () => {
 
     const handleSendSms = async () => {
         setLoading(true)
-        const sent = await getSms(completeNum)
-        console.log(sent)
-        if (sent) {
-            setLoading(false)
-        }
-        router.push({
-            pathname: "/login/confirmacao",
-            query: { cel: `${completeNum}`, valor: `${query.valor}` }
-        })
+        await getSms(completeNum)
+            .then(res => {
+                if (res.data.situacao === "OK") {
+                    console.log("completeNum: ", completeNum)
+                    setLoading(false)
+                    router.push({
+                        pathname: "/login/confirmacao",
+                        query: { cel: `${completeNum}`, valor: `${query.valor}` }
+                    })
+                }
+            })
+        // console.log("sent: ", sent)
+        // if (sent) {
+        //     setLoading(false)
+        //     router.push({
+        //         pathname: "/login/confirmacao",
+        //         query: { cel: `${completeNum}`, valor: `${query.valor}` }
+        //     })
+        // }
     }
 
     return (
@@ -61,7 +71,6 @@ const Login = () => {
                             type="number"
                             onChange={(e) => onChange(e.target.value, "ddd")}
                             value={ddd}
-                            payment
                             fontSize="3rem"
                             />
                         <TextField
@@ -72,7 +81,6 @@ const Login = () => {
                             type="number"
                             onChange={(e) => onChange(e.target.value, "celular")}
                             value={celular}
-                            payment
                             fontSize="3rem"
                             />
                     </LoginFormContainer>

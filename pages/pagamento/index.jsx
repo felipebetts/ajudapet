@@ -7,6 +7,7 @@ import { createPayment, setPaymentForm } from "../../services/payment-client"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
 import { CircularProgress } from "@material-ui/core"
+import { getCurrentUser } from "../../services/auth-client"
 
 
 const Payment = () => {
@@ -21,6 +22,7 @@ const Payment = () => {
     const { query } = useRouter()
     const valor = query.valor
 
+
     if (valor !== undefined) {
         return (
             <Layout>
@@ -33,10 +35,10 @@ const Payment = () => {
     } else {
         return (
             <Layout>
-                {/* <MainContainer> */}
+                <MainContainer>
                     <H2>Pagamento</H2>
                     <CircularProgress color="inherit" />
-                {/* </MainContainer> */}
+                </MainContainer>
             </Layout>
         )
     }
