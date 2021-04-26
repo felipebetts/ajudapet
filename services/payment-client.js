@@ -4,7 +4,7 @@ import { formatFormData } from "../utils/formatFormData";
 import Router from "next/router"
 
 const setPaymentForm = async () => {
-    await window.Mercadopago.setPublishableKey("TEST-de473f1e-611d-4f6f-9182-58ef3bff040f");
+    await window.Mercadopago.setPublishableKey("TEST-adb95af8-06af-4982-ad62-7bddc9bacf63");
 
     await window.Mercadopago.getIdentificationTypes();
 
