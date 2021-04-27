@@ -140,13 +140,32 @@ const registerUserDonation = (donation) => {
         })
 }
 
-// async function
+const getPaymentMethods = () => {
+    axios.get('http://localhost:3000/donation/payment_methods')
+        .then(res => {
+            return res.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+const pixPayment = (form) => {
+    console.log(form)
+    return axios.post('http://localhost:3000/donation/pix_payment', form)
+        // .catch(err => {
+        //     console.log(err)
+        //     // return err
+        // })
+}
 
 
 export {
     setPaymentForm,
     getInstallments,
-    getCardToken
+    getCardToken,
+    getPaymentMethods,
+    pixPayment
 }
 
 // const user = getCurrentUser()

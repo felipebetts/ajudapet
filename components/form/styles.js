@@ -139,4 +139,31 @@ export const CardFlagContainer = styled.div`
         margin-top: 7px;
     }
 `
+
+export const PaymentMethodOption = styled.div`
+    width: 100%;
+    height: 4rem;
+
+    background: inherit;
+    color: inherit;
+    font: inherit;
+    
+    // border-radius: 5px;
+    // margin: 5px;
+
+    padding: 10px;
+    border-top: solid 1px #444 ;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    &:hover {
+        background: #343434;
+    }
+    
+    &:last-child {
+        border-bottom: solid 1px #444 ;
+    }
+`
             

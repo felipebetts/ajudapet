@@ -95,4 +95,9 @@ export const LoginFormContainer = styled.form`
     margin-bottom: 20px;
 `
 
+export const QrCodeImg = styled.img`
+    width: 80%;
+    height: 80%;
+`
+
 // color: ${({ theme }) => theme.colors.secondary};

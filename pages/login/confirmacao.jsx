@@ -42,8 +42,8 @@ const LoginConfirmation = () => {
                 const valor = query.valor
                 if (user && valor) {
                     router.push({
-                        pathname: "/pagamento",
-                        query: { valor: valor }
+                        pathname: "/pagamento/metodo",
+                        query: { valor }
                     })
                 }
             })
