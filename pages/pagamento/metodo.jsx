@@ -1,12 +1,7 @@
 import { Layout, MainContainer } from '../../components/Containers'
 import { H3 } from '../../components/Text'
 
-import dynamic from "next/dynamic"
-
-const PaymentMethodForm = dynamic(
-    () => import('../../components/form/PaymentMethodForm'),
-    { ssr: false }
-)
+import PaymentMethodForm from '../../components/form/PaymentMethodForm'
 
 const paymentMethod = () => {
 
